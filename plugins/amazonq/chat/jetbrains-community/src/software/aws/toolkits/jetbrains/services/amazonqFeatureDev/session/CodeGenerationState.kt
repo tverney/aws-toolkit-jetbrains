@@ -4,6 +4,7 @@
 package software.aws.toolkits.jetbrains.services.amazonqFeatureDev.session
 
 import kotlinx.coroutines.delay
+import org.gradle.tooling.CancellationTokenSource
 import software.amazon.awssdk.services.codewhispererruntime.model.CodeGenerationWorkflowStatus
 import software.aws.toolkits.core.utils.getLogger
 import software.aws.toolkits.core.utils.warn
@@ -24,6 +25,7 @@ private val logger = getLogger<CodeGenerationState>()
 class CodeGenerationState(
     override val tabID: String,
     override var approach: String,
+    override val token: CancellationTokenSource?,
     val config: SessionStateConfig,
     val uploadId: String,
     val currentIteration: Int,
@@ -78,7 +80,8 @@ class CodeGenerationState(
                 uploadId = uploadId,
                 messenger = messenger,
                 codeGenerationRemainingIterationCount = codeGenerationRemainingIterationCount,
-                codeGenerationTotalIterationCount = codeGenerationTotalIterationCount
+                codeGenerationTotalIterationCount = codeGenerationTotalIterationCount,
+                token = this.token
             )
 
             // It is not needed to interact right away with the PrepareCodeGeneration.
