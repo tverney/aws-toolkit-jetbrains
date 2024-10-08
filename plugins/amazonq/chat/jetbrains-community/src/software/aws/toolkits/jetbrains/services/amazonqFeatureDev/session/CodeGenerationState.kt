@@ -166,16 +166,20 @@ private suspend fun CodeGenerationState.generateCode(codeGenerationId: String, m
                 when (true) {
                     codeGenerationResultState.codeGenerationStatusDetail()?.contains(
                         "Guardrails"
-                    ) -> featureDevServiceError(message("amazonqFeatureDev.exception.guardrails"))
+                    ),
+                    -> featureDevServiceError(message("amazonqFeatureDev.exception.guardrails"))
                     codeGenerationResultState.codeGenerationStatusDetail()?.contains(
                         "PromptRefusal"
-                    ) -> featureDevServiceError(message("amazonqFeatureDev.exception.prompt_refusal"))
+                    ),
+                    -> featureDevServiceError(message("amazonqFeatureDev.exception.prompt_refusal"))
                     codeGenerationResultState.codeGenerationStatusDetail()?.contains(
                         "EmptyPatch"
-                    ) -> featureDevServiceError(message("amazonqFeatureDev.exception.guardrails"))
+                    ),
+                    -> featureDevServiceError(message("amazonqFeatureDev.exception.guardrails"))
                     codeGenerationResultState.codeGenerationStatusDetail()?.contains(
                         "Throttling"
-                    ) -> featureDevServiceError(message("amazonqFeatureDev.exception.throttling"))
+                    ),
+                    -> featureDevServiceError(message("amazonqFeatureDev.exception.throttling"))
                     else -> codeGenerationFailedError()
                 }
             }
