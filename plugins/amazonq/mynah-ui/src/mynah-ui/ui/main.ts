@@ -127,6 +127,7 @@ export const createMynahUI = (ideApi: any, featureDevInitEnabled: boolean, codeT
                 mynahUI.updateStore(tabID, {
                     loadingChat: true,
                     promptInputDisabledState: true,
+                    cancelButtonWhenLoading: true,
                 })
                 if (message) {
                     mynahUI.updateLastChatAnswer(tabID, {
@@ -266,6 +267,7 @@ export const createMynahUI = (ideApi: any, featureDevInitEnabled: boolean, codeT
             ) {
                 mynahUI.updateStore(tabID, {
                     loadingChat: true,
+                    cancelButtonWhenLoading: false,
                     promptInputDisabledState: true,
                 })
 

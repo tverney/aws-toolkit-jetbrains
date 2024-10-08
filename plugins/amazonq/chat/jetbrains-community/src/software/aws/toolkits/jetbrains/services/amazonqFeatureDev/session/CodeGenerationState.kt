@@ -46,6 +46,8 @@ class CodeGenerationState(
         var numberOfFilesGenerated: Int? = null
         try {
             val codeGenerationId = UUID.randomUUID()
+
+
             val response = config.featureDevService.startTaskAssistCodeGeneration(
                 conversationId = config.conversationId,
                 uploadId = uploadId,
@@ -53,6 +55,10 @@ class CodeGenerationState(
                 codeGenerationId = codeGenerationId,
                 currentCodeGenerationId = currentCodeGenerationId
             )
+
+            if (action.token?.token()?.isCancellationRequested != true) {
+                this.currentCodeGenerationId = codeGenerationId
+            }
 
             messenger.sendAnswerPart(
                 tabId = tabID,
