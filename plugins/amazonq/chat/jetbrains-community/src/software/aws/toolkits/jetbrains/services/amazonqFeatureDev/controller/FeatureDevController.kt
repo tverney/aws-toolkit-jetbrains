@@ -288,6 +288,7 @@ class FeatureDevController(
 
     private suspend fun handleStopMessage(message: IncomingFeatureDevMessage.StopResponse) {
         var session: Session? = null
+        AmazonqTelemetry.stopCodeGeneration(tabId = message.tabId)
         messenger.sendAnswer( tabId = message.tabId, message("amazonqFeatureDev.code_generation.stopping_code_generation"), messageType = FeatureDevMessageType.Answer, canBeVoted = false)
         messenger.sendUpdatePlaceholder(
             tabId = message.tabId,
@@ -299,7 +300,6 @@ class FeatureDevController(
         if (session.sessionState.token?.token() !== null) {
             session.sessionState?.token?.cancel()
         }
-
     }
     private suspend fun insertCode(tabId: String) {
         var session: Session? = null
@@ -513,7 +513,6 @@ class FeatureDevController(
             }
         }
     }
-
 
     private suspend fun handleChat(
         tabId: String,

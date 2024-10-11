@@ -318,6 +318,11 @@
                 "IAM"
             ],
             "description": "Login is with Legacy device code or newer PKCE flow"
+        },
+        {
+            "name": "tabId",
+            "type": "string",
+            "description": "The unique identifier of a tab"
         }
     ],
     "metrics": [
@@ -852,6 +857,16 @@
                 {
                     "type": "isReAuth",
                     "required": false
+                }
+            ]
+        },
+        {
+            "name": "amazonq_stopCodeGeneration",
+            "description": "User stopped the code generation",
+            "metadata": [
+                {
+                    "type": "tabId",
+                    "required": true
                 }
             ]
         }
